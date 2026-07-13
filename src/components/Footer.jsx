@@ -1,25 +1,26 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 import logo from '../assets/logo.png';
+import gemLogo from '../assets/gem.png';
+import cmmiLogo from '../assets/cmmi logo.png';
+import WavyDivider from './WavyDivider';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
         <footer className="footer-new">
-            <div className="container">
+            <WavyDivider position="top" color="var(--white)" flip={true} />
+
+            <div className="container footer-container">
                 <div className="footer-grid">
                     {/* Brand Section */}
                     <div className="footer-col brand-col">
                         <Link to="/" className="footer-logo">
                             <img src={logo} alt="Vir Softech" />
-                            <div className="logo-text">
-                                <span className="brand-name">VIR SOFTECH</span>
-                                <span className="brand-tagline">Stride to Success</span>
-                            </div>
                         </Link>
                         <p className="footer-description">
-                            Engineering the future through innovative Imaging, Computer Vision, and Enterprise Content Management solutions. 
+                            Engineering the future through innovative Imaging, Computer Vision, and Enterprise Content Management solutions.
                             Global excellence from Noida to Tokyo.
                         </p>
                         <div className="social-links">
@@ -35,8 +36,8 @@ const Footer = () => {
                     <div className="footer-col">
                         <h4 className="footer-title">Solutions</h4>
                         <ul className="footer-links">
-                            <li><Link to="/solutions/enterprise-content-management">VsDox ECM</Link></li>
-                            <li><Link to="/solutions/eval-educational-solution-suite">eVAL Education Suite</Link></li>
+                            <li><a href="https://vsdox.com" target="_blank" rel="noopener noreferrer">VsDox ECM</a></li>
+                            <li><a href="https://evalexam.com" target="_blank" rel="noopener noreferrer">eVAL Education Suite</a></li>
                             <li><Link to="/solutions/print-product-engineering">Print Engineering</Link></li>
                             <li><Link to="/solutions/custom-product-engineering">Custom Software</Link></li>
                             <li><Link to="/solutions/design-artwork-automation">Design Automation</Link></li>
@@ -71,9 +72,8 @@ const Footer = () => {
                                 <Phone size={18} className="contact-icon" />
                                 <div>
                                     <p className="contact-label">Phone</p>
-                                    <div className="contact-values-row">
+                                    <div className="contact-values-col">
                                         <a href="tel:+919319275051" className="contact-value">+91-9319275051</a>
-                                        <span className="separator">,</span>
                                         <a href="tel:+919871258989" className="contact-value">+91-9871258989</a>
                                     </div>
                                 </div>
@@ -82,20 +82,19 @@ const Footer = () => {
                                 <MapPin size={18} className="contact-icon" />
                                 <div>
                                     <p className="contact-label">Headquarters</p>
-                                    <p className="contact-value">A 306, The I Thum, Plot No. A 40, Sector 62, Noida, UP 201309</p>
+                                    <p className="contact-value">A 306, The I Thum, Sector 62, Noida, UP 201309</p>
                                 </div>
                             </div>
                         </div>
 
                         <div className="footer-certifications">
                             <div className="cert-card">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Government_e_Marketplace_Logo.png" alt="GeM Logo" />
+                                <img src={gemLogo} alt="GeM Logo" />
                             </div>
                             <div className="cert-card">
-                                <img src="https://cmmiinstitute.com/CMMI/media/CMMIInstitute/Logos/CMMI-Appraised-ML3-RGB.png" alt="CMMI ML3 Logo" />
+                                <img src={cmmiLogo} alt="CMMI ML3 Logo" />
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -106,7 +105,7 @@ const Footer = () => {
                         </p>
                         <div className="footer-bottom-links">
                             <Link to="/terms">Terms of Service</Link>
-                            <Link to="/cookies">Cookie Policy</Link>
+                            <Link to="/privacy">Privacy Policy</Link>
                             <Link to="/sitemap">Sitemap</Link>
                         </div>
                     </div>
@@ -117,160 +116,147 @@ const Footer = () => {
                 .footer-new {
                     background: var(--primary);
                     color: var(--white);
-                    padding: 80px 0 40px;
-                    border-top: 1px solid rgba(255, 255, 255, 0.05);
+                    padding: 100px 0 40px;
+                    position: relative;
+                }
+
+                .footer-container {
+                    position: relative;
+                    z-index: 2;
                 }
 
                 .footer-grid {
                     display: grid;
                     grid-template-columns: 1.5fr 0.8fr 0.8fr 1.2fr;
                     gap: 3rem;
-                    margin-bottom: 60px;
-                }
-
-                .footer-logo {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.75rem;
-                    margin-bottom: 1.5rem;
+                    margin-bottom: 50px;
                 }
 
                 .footer-logo img {
-                    height: 40px;
+                    height: 50px;
                     filter: brightness(0) invert(1);
-                }
-
-                .footer-logo .brand-name {
-                    color: white;
-                    font-size: 1.25rem;
-                    font-weight: 800;
-                    letter-spacing: 1px;
-                }
-
-                .footer-logo .brand-tagline {
-                    color: var(--accent);
-                    font-size: 0.65rem;
-                    letter-spacing: 1px;
+                    margin-bottom: 2rem;
                 }
 
                 .footer-description {
-                    color: var(--text-light);
-                    font-size: 0.95rem;
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 1.1rem;
                     line-height: 1.7;
-                    margin-bottom: 2rem;
+                    margin-bottom: 2.5rem;
                     max-width: 350px;
                 }
 
                 .social-links {
                     display: flex;
-                    gap: 1rem;
+                    gap: 1.25rem;
                 }
 
                 .social-link {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: var(--radius-md);
-                    background: rgba(255, 255, 255, 0.05);
+                    width: 44px;
+                    height: 44px;
+                    border-radius: var(--radius-full);
+                    background: rgba(255, 255, 255, 0.1);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     color: var(--white);
                     transition: var(--transition-normal);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
                 }
 
                 .social-link:hover {
                     background: var(--accent);
-                    color: var(--white);
-                    transform: translateY(-3px);
+                    color: var(--primary);
+                    transform: translateY(-5px);
                     border-color: var(--accent);
                 }
 
                 .footer-title {
                     color: var(--white);
-                    font-size: 1.125rem;
+                    font-size: 1.4rem;
                     font-weight: 700;
-                    margin-bottom: 1.5rem;
-                    position: relative;
+                    margin-bottom: 2rem;
+                    font-family: var(--font-heading);
                 }
 
                 .footer-links {
                     list-style: none;
                     display: flex;
                     flex-direction: column;
-                    gap: 0.75rem;
+                    gap: 1rem;
                 }
 
                 .footer-links a {
-                    color: var(--text-light);
-                    font-size: 0.95rem;
-                    transition: var(--transition-fast);
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 1.05rem;
+                    transition: var(--transition-normal);
+                    font-weight: 500;
                 }
 
                 .footer-links a:hover {
                     color: var(--accent);
-                    padding-left: 5px;
+                    transform: translateX(8px);
                 }
 
                 .contact-details {
                     display: flex;
                     flex-direction: column;
-                    gap: 1.25rem;
-                    margin-bottom: 2rem;
+                    gap: 1.5rem;
+                    margin-bottom: 2.5rem;
                 }
 
                 .contact-item {
                     display: flex;
-                    gap: 1rem;
+                    gap: 1.25rem;
                 }
 
                 .contact-icon {
                     color: var(--accent);
                     flex-shrink: 0;
-                    margin-top: 0.25rem;
+                    margin-top: 0.3rem;
                 }
 
                 .contact-label {
-                    font-size: 0.75rem;
-                    color: var(--text-light);
+                    font-size: 0.8rem;
+                    color: rgba(255, 255, 255, 0.5);
                     text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    margin-bottom: 2px;
+                    letter-spacing: 1px;
+                    margin-bottom: 4px;
+                    font-weight: 700;
                 }
 
                 .contact-value {
                     color: var(--white);
-                    font-size: 0.95rem;
-                    font-weight: 500;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    white-space: nowrap;
                 }
 
-                .contact-values-row {
+                .contact-values-col {
                     display: flex;
-                    align-items: center;
+                    flex-direction: column;
                     gap: 0.25rem;
-                }
-
-                .separator {
-                    color: var(--text-light);
-                    font-weight: 500;
                 }
 
                 .footer-certifications {
                     display: flex;
-                    gap: 1rem;
-                    margin-top: 1.5rem;
+                    gap: 1.25rem;
                 }
 
                 .cert-card {
-                    background: white;
-                    padding: 0.5rem;
+                    background: rgba(255, 255, 255, 0.95);
+                    padding: 0.6rem;
                     border-radius: var(--radius-md);
-                    width: 100px;
-                    height: 50px;
+                    width: 110px;
+                    height: 55px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    overflow: hidden;
+                    transition: transform 0.3s ease;
+                }
+
+                .cert-card:hover {
+                    transform: scale(1.05);
                 }
 
                 .cert-card img {
@@ -279,11 +265,9 @@ const Footer = () => {
                     object-fit: contain;
                 }
 
-
-
                 .footer-bottom {
-                    padding-top: 2rem;
-                    border-top: 1px solid rgba(255, 255, 255, 0.05);
+                    padding-top: 3rem;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
                 }
 
                 .footer-bottom-content {
@@ -291,38 +275,43 @@ const Footer = () => {
                     justify-content: space-between;
                     align-items: center;
                     flex-wrap: wrap;
-                    gap: 1.5rem;
+                    gap: 2rem;
                 }
 
                 .copyright {
-                    font-size: 0.875rem;
-                    color: var(--text-light);
+                    font-size: 1rem;
+                    color: rgba(255, 255, 255, 0.6);
                 }
 
                 .footer-bottom-links {
                     display: flex;
-                    gap: 1.5rem;
+                    gap: 2.5rem;
                 }
 
                 .footer-bottom-links a {
-                    font-size: 0.875rem;
-                    color: var(--text-light);
+                    font-size: 1rem;
+                    color: rgba(255, 255, 255, 0.6);
+                    font-weight: 500;
                 }
 
                 .footer-bottom-links a:hover {
-                    color: white;
+                    color: var(--accent);
                 }
 
                 @media (max-width: 1024px) {
                     .footer-grid {
                         grid-template-columns: 1fr 1fr;
+                        gap: 4rem;
                     }
                 }
 
-                @media (max-width: 640px) {
+                @media (max-width: 768px) {
+                    .footer-new {
+                        padding: 120px 0 40px;
+                    }
                     .footer-grid {
                         grid-template-columns: 1fr;
-                        gap: 2.5rem;
+                        gap: 3.5rem;
                     }
                     .footer-bottom-content {
                         flex-direction: column;
@@ -335,3 +324,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+

@@ -23,11 +23,50 @@ const AboutPage = () => {
     ];
 
     const milestones = [
-        { year: '2014', event: 'Company Founded in New Delhi' },
-        { year: '2016', event: 'Launched vsDox ECM Platform' },
-        { year: '2018', event: 'Established Japan Operations' },
-        { year: '2020', event: 'Released eVAL Educational Suite' },
-        { year: '2023', event: 'CMMI Level 3 Quality Standards' }
+        { 
+            year: '2025', 
+            event: 'Achieved CMMI Level 3 (Software Development), eVAL OMR deployed across 1000 locations in India for large-scale defence sector assessments, emerging as one of the most widely adopted OMR evaluation solutions in the country.' 
+        },
+        { 
+            year: '2024', 
+            event: 'Delivered digital repository for Indian Pharmacopoeia Commission (Ministry of Health) - https://iponline.ipc.gov.in/jspui, implemented NPS workflow for a largest POP in India, executed nationwide school leaving exam evaluation in Africa using eVAL OMR.' 
+        },
+        { 
+            year: '2023', 
+            event: 'Implemented Paperless Court solutions and Document Management solutions across multiple High Courts & District Courts, delivered Deccan Virasat digital platform - https://virasat.dcpune.ac.in , conducted large-scale school assessments (40 lakh students) in Nigeria using eVAL OMR.' 
+        },
+        { 
+            year: '2022', 
+            event: 'Delivered IIC DigiLib digital repository – https://digilib.iicdelhi.in/jspui/ , successfully evaluated 30 lakh OMR sheets for a major education board in India.' 
+        },
+        { 
+            year: '2021', 
+            event: 'Implemented headless DMS for one of India’s largest private life insurance companies, eVAL OMR used by the United Nations for successfully evaluating nationwide school assessments.' 
+        },
+        { 
+            year: '2020', 
+            event: 'Launched eVAL CBT platform, conducted CBT exams for a most prestigious Dental College in India.' 
+        },
+        { 
+            year: '2019', 
+            event: 'Implemented enterprise DMS for the world’s largest two-wheeler manufacturing company.' 
+        },
+        { 
+            year: '2018', 
+            event: 'Conducted large-scale census education survey for a major Indian state using eVAL OMR.' 
+        },
+        { 
+            year: '2017', 
+            event: 'Deployed eVAL OMR across 600+ districts in India, enabling release of NAS 2017 results within one month.' 
+        },
+        { 
+            year: '2016', 
+            event: 'Launched the eVAL product suite in the market.' 
+        },
+        { 
+            year: '2015', 
+            event: 'Company incorporated to deliver innovative software solutions.' 
+        }
     ];
 
     return (
@@ -107,21 +146,39 @@ const AboutPage = () => {
                 </div>
             </section>
 
-            {/* Timeline / Milestones */}
-            <section className="section about-timeline">
+            {/* Redesigned Timeline / Milestones */}
+            <section className="section about-timeline-modern">
                 <div className="container">
                     <div className="section-header-new text-center">
-                        <h2 className="section-title">Our <span className="text-gradient">Milestones</span></h2>
+                        <span className="badge-accent">Our Evolution</span>
+                        <h2 className="section-title">Milestones of <span className="text-gradient">Impact</span></h2>
+                        <p className="section-subtitle">A decade of engineering excellence and digital transformation.</p>
                     </div>
-                    <div className="timeline-wrapper">
+
+                    <div className="modern-timeline">
+                        <div className="timeline-line"></div>
+                        
                         {milestones.map((item, i) => (
-                            <div key={i} className="timeline-item">
-                                <div className="timeline-year">{item.year}</div>
-                                <div className="timeline-dot"></div>
-                                <div className="timeline-content card">
-                                    <p>{item.event}</p>
+                            <motion.div 
+                                key={i} 
+                                className={`timeline-block ${i % 2 === 0 ? 'left' : 'right'}`}
+                                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6, delay: 0.1 }}
+                            >
+                                <div className="timeline-marker">
+                                    <div className="marker-dot"></div>
+                                    <div className="marker-year">{item.year}</div>
                                 </div>
-                            </div>
+                                
+                                <div className="timeline-card glass-card">
+                                    <div className="card-year-mobile">{item.year}</div>
+                                    <p dangerouslySetInnerHTML={{ 
+                                        __html: item.event.replace(/(https?:\/\/[^\s,]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="timeline-link">$1</a>') 
+                                    }}></p>
+                                </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -205,60 +262,106 @@ const AboutPage = () => {
                     margin-bottom: 1.5rem;
                 }
 
-                .timeline-wrapper {
-                    max-width: 800px;
-                    margin: 4rem auto 0;
+                .about-timeline-modern {
+                    padding: var(--spacing-xl) 0;
+                    background: var(--background-alt);
                     position: relative;
                 }
 
-                .timeline-wrapper::before {
-                    content: '';
+                .modern-timeline {
+                    position: relative;
+                    max-width: 1200px;
+                    margin: 5rem auto 0;
+                    padding: 2rem 0;
+                }
+
+                .timeline-line {
                     position: absolute;
                     left: 50%;
                     top: 0;
                     bottom: 0;
                     width: 2px;
-                    background: var(--background-alt);
+                    background: linear-gradient(to bottom, transparent, var(--secondary) 10%, var(--secondary) 90%, transparent);
                     transform: translateX(-50%);
+                    opacity: 0.3;
                 }
 
-                .timeline-item {
+                .timeline-block {
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 3rem;
+                    width: 100%;
+                    margin-bottom: 4rem;
                     position: relative;
                 }
 
-                .timeline-year {
-                    flex: 1;
-                    text-align: right;
-                    padding-right: 3rem;
-                    font-weight: 900;
-                    font-size: 1.5rem;
-                    color: var(--primary);
-                    font-family: var(--font-heading);
+                .timeline-block.left {
+                    flex-direction: row-reverse;
                 }
 
-                .timeline-dot {
-                    width: 16px;
-                    height: 16px;
+                .timeline-card {
+                    width: 45%;
+                    padding: 2.5rem;
+                    border-radius: var(--radius-xl);
+                    background: var(--white);
+                    box-shadow: var(--shadow-lg);
+                    border: 1px solid rgba(0, 0, 0, 0.05);
+                    position: relative;
+                    transition: var(--transition-normal);
+                }
+
+                .timeline-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: var(--shadow-xl);
+                    border-color: var(--secondary);
+                }
+
+                .timeline-card p {
+                    margin: 0;
+                    font-size: 1rem;
+                    line-height: 1.7;
+                    color: var(--text);
+                    font-weight: 500;
+                }
+
+                :global(.timeline-link) {
+                    color: var(--secondary);
+                    text-decoration: underline;
+                    word-break: break-all;
+                }
+
+                .timeline-marker {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    z-index: 10;
+                }
+
+                .marker-dot {
+                    width: 20px;
+                    height: 20px;
                     background: var(--secondary);
                     border: 4px solid var(--white);
                     border-radius: 50%;
-                    z-index: 2;
-                    box-shadow: 0 0 0 4px var(--background-alt);
+                    box-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
                 }
 
-                .timeline-content {
-                    flex: 1;
-                    margin-left: 3rem;
-                    padding: 1.5rem 2rem;
+                .marker-year {
+                    margin-top: 10px;
+                    font-weight: 900;
+                    font-size: 1.25rem;
+                    color: var(--primary);
+                    background: var(--white);
+                    padding: 4px 12px;
+                    border-radius: var(--radius-sm);
+                    box-shadow: var(--shadow-sm);
                 }
 
-                .timeline-content p {
-                    margin: 0;
-                    font-weight: 600;
-                    color: var(--text);
+                .card-year-mobile {
+                    display: none;
                 }
 
                 .global-presence {
@@ -306,28 +409,34 @@ const AboutPage = () => {
                     }
                 }
 
-                @media (max-width: 768px) {
-                    .timeline-wrapper::before {
-                        left: 20px;
+                @media (max-width: 992px) {
+                    .timeline-line {
+                        left: 30px;
+                        transform: none;
                     }
-                    .timeline-item {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        padding-left: 50px;
+                    .timeline-block {
+                        flex-direction: row !important;
+                        justify-content: flex-start;
+                        padding-left: 70px;
+                        margin-bottom: 3rem;
                     }
-                    .timeline-year {
-                        text-align: left;
-                        padding-right: 0;
-                        margin-bottom: 0.5rem;
-                    }
-                    .timeline-dot {
-                        position: absolute;
-                        left: 12px;
-                        top: 10px;
-                    }
-                    .timeline-content {
-                        margin-left: 0;
+                    .timeline-card {
                         width: 100%;
+                        padding: 2rem;
+                    }
+                    .timeline-marker {
+                        left: 30px;
+                        transform: translateX(-50%);
+                    }
+                    .marker-year {
+                        display: none;
+                    }
+                    .card-year-mobile {
+                        display: inline-block;
+                        font-weight: 900;
+                        font-size: 1.5rem;
+                        color: var(--secondary);
+                        margin-bottom: 1rem;
                     }
                 }
             `}</style>

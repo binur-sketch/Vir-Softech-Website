@@ -13,7 +13,7 @@ const FeatureInfographic = () => {
             icon: <Zap size={32} />,
             title: "Rapid Innovation",
             desc: "Agile development cycles that turn complex requirements into functional products faster.",
-            color: "var(--secondary)"
+            color: "var(--accent)"
         },
         {
             icon: <Shield size={32} />,
@@ -25,7 +25,7 @@ const FeatureInfographic = () => {
             icon: <Globe2 size={32} />,
             title: "Global Excellence",
             desc: "Leveraging synergies between our India and Japan offices to deliver world-class solutions.",
-            color: "var(--secondary)"
+            color: "var(--accent)"
         },
         {
             icon: <Cpu size={32} />,
@@ -37,7 +37,7 @@ const FeatureInfographic = () => {
             icon: <BarChart3 size={32} />,
             title: "Data-Driven Insights",
             desc: "Transforming raw data into actionable intelligence through advanced analytics and reporting.",
-            color: "var(--secondary)"
+            color: "var(--accent)"
         }
     ];
 
@@ -48,14 +48,14 @@ const FeatureInfographic = () => {
                     <span className="badge-accent">The Vir Softech Edge</span>
                     <h2 className="section-title">Why Global Leaders <br />Trust <span className="text-gradient">Our Expertise</span></h2>
                     <p className="section-subtitle">
-                        We don't just build software; we engineer competitive advantages 
+                        We don't just build software; we engineer competitive advantages
                         that help you stay ahead in an ever-evolving digital landscape.
                     </p>
                 </div>
 
                 <div className="advantage-grid">
                     {pillars.map((pillar, index) => (
-                        <motion.div 
+                        <motion.div
                             key={index}
                             className="advantage-card glass"
                             initial={{ opacity: 0, scale: 0.9 }}
@@ -74,7 +74,7 @@ const FeatureInfographic = () => {
                 </div>
 
                 <div className="stride-highlight">
-                    <motion.div 
+                    <motion.div
                         className="stride-card"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -94,18 +94,42 @@ const FeatureInfographic = () => {
             <style jsx>{`
                 .advantage-section {
                     padding: var(--spacing-xl) 0;
-                    background: var(--primary);
-                    color: white;
+                    background: var(--background);
+                    color: var(--text);
                     position: relative;
                     overflow: hidden;
                 }
 
-                .advantage-section :global(.section-title) {
-                    color: white;
+                .advantage-section .section-title {
+                    color: var(--text) !important;
                 }
 
-                .advantage-section :global(.section-subtitle) {
-                    color: #94a3b8;
+                .advantage-section .text-gradient {
+                    background: var(--gradient-primary) !important;
+                    -webkit-background-clip: text !important;
+                    background-clip: text !important;
+                    color: transparent !important;
+                    display: inline !important;
+                }
+
+                .advantage-section .section-subtitle {
+                    color: var(--text-muted) !important;
+                    opacity: 0.95 !important;
+                    font-weight: 500 !important;
+                }
+
+                .badge-accent {
+                    display: inline-block;
+                    padding: 0.5rem 1.25rem;
+                    background: rgba(255, 183, 3, 0.15);
+                    color: #FB8500;
+                    border-radius: var(--radius-full);
+                    font-weight: 700;
+                    font-size: 0.85rem;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    margin-bottom: 1.5rem;
+                    border: 1px solid rgba(255, 183, 3, 0.3);
                 }
 
                 .advantage-grid {
@@ -118,16 +142,17 @@ const FeatureInfographic = () => {
                 .advantage-card {
                     padding: 3rem 2rem;
                     border-radius: var(--radius-xl);
-                    background: rgba(255, 255, 255, 0.03);
-                    border: 1px solid rgba(255, 255, 255, 0.05);
+                    background: var(--white);
+                    border: 1px solid rgba(2, 48, 71, 0.05);
+                    box-shadow: var(--shadow-md);
                     transition: var(--transition-normal);
                     text-align: center;
                 }
 
                 .advantage-card:hover {
-                    background: rgba(255, 255, 255, 0.07);
                     transform: translateY(-10px);
-                    border-color: rgba(255, 255, 255, 0.2);
+                    border-color: var(--accent);
+                    box-shadow: var(--shadow-xl);
                 }
 
                 .advantage-icon-box {
@@ -142,21 +167,22 @@ const FeatureInfographic = () => {
 
                 .icon-glow {
                     position: absolute;
-                    width: 40px;
-                    height: 40px;
-                    filter: blur(30px);
-                    opacity: 0.4;
+                    width: 60px;
+                    height: 60px;
+                    filter: blur(25px);
+                    opacity: 0.6;
                     z-index: 1;
+                    border-radius: 50%;
                 }
 
                 .advantage-title {
-                    color: white;
+                    color: var(--text);
                     font-size: 1.5rem;
                     margin-bottom: 1rem;
                 }
 
                 .advantage-desc {
-                    color: #94a3b8;
+                    color: var(--text-muted);
                     font-size: 0.95rem;
                     line-height: 1.7;
                 }
@@ -166,14 +192,14 @@ const FeatureInfographic = () => {
                 }
 
                 .stride-card {
-                    background: var(--gradient-accent);
+                    background: var(--gradient-primary);
                     padding: 3rem 4rem;
                     border-radius: var(--radius-xl);
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     gap: 3rem;
-                    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+                    box-shadow: 0 20px 40px rgba(2, 48, 71, 0.3);
                 }
 
                 .stride-content h3 {

@@ -10,16 +10,41 @@ const Contact = () => {
         message: ''
     });
 
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState({ type: '', message: '' });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus('Message sent successfully! Our team will contact you shortly.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setStatus({ type: 'sending', message: 'Sending message...' });
+
+        try {
+            const response = await fetch("https://formsubmit.co/ajax/corp@virsoftech.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                    _subject: "New Website Enquiry from " + formData.name
+                })
+            });
+
+            if (response.ok) {
+                setStatus({ type: 'success', message: 'Message sent successfully! Our team will contact you shortly.' });
+                setFormData({ name: '', email: '', subject: '', message: '' });
+            } else {
+                setStatus({ type: 'error', message: 'Failed to send message. Please try again later.' });
+            }
+        } catch (error) {
+            setStatus({ type: 'error', message: 'An error occurred. Please try again or email us directly.' });
+        }
     };
 
     return (
@@ -141,13 +166,13 @@ const Contact = () => {
                                 Send Message <Send size={18} />
                             </button>
 
-                            {status && (
+                            {status.message && (
                                 <motion.div 
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="form-status success"
+                                    className={`form-status ${status.type}`}
                                 >
-                                    {status}
+                                    {status.message}
                                 </motion.div>
                             )}
                         </form>
@@ -325,6 +350,18 @@ const Contact = () => {
                     background: rgba(16, 185, 129, 0.1);
                     color: #065f46;
                     border: 1px solid rgba(16, 185, 129, 0.2);
+                }
+
+                .form-status.error {
+                    background: rgba(239, 68, 68, 0.1);
+                    color: #991b1b;
+                    border: 1px solid rgba(239, 68, 68, 0.2);
+                }
+
+                .form-status.sending {
+                    background: rgba(59, 130, 246, 0.1);
+                    color: #1e40af;
+                    border: 1px solid rgba(59, 130, 246, 0.2);
                 }
 
                 @media (max-width: 1024px) {

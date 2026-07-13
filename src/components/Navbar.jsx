@@ -32,9 +32,11 @@ const Navbar = () => {
             dropdown: solutions.map(s => ({
                 name: s.title,
                 path: `/solutions/${s.slug}`,
+                externalLink: s.externalLink,
                 subItems: s.subItems ? s.subItems.map(sub => ({
                     name: sub.title,
-                    path: `/solutions/${sub.slug}`
+                    path: `/solutions/${sub.slug}`,
+                    externalLink: sub.externalLink
                 })) : null
             }))
         },
@@ -50,10 +52,6 @@ const Navbar = () => {
                 {/* Logo Section */}
                 <Link to="/" className="nav-logo">
                     <img src={logo} alt="Vir Softech" />
-                    <div className="logo-text">
-                        <span className="brand-name">VIR SOFTECH</span>
-                        <span className="brand-tagline">Stride to Success</span>
-                    </div>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -84,18 +82,33 @@ const Navbar = () => {
                                         <div className="dropdown-grid">
                                             {link.dropdown.map((item) => (
                                                 <div key={item.name} className="dropdown-item-wrapper">
-                                                    <Link to={item.path} className="dropdown-item">
-                                                        <div className="item-info">
-                                                            <span className="item-name">{item.name}</span>
-                                                        </div>
-                                                        {item.subItems && <ChevronRight size={14} />}
-                                                    </Link>
+                                                    {item.externalLink ? (
+                                                        <a href={item.externalLink} target="_blank" rel="noopener noreferrer" className="dropdown-item">
+                                                            <div className="item-info">
+                                                                <span className="item-name">{item.name}</span>
+                                                            </div>
+                                                            {item.subItems && <ChevronRight size={14} />}
+                                                        </a>
+                                                    ) : (
+                                                        <Link to={item.path} className="dropdown-item">
+                                                            <div className="item-info">
+                                                                <span className="item-name">{item.name}</span>
+                                                            </div>
+                                                            {item.subItems && <ChevronRight size={14} />}
+                                                        </Link>
+                                                    )}
                                                     {item.subItems && (
                                                         <div className="dropdown-sub-menu">
                                                             {item.subItems.map(sub => (
-                                                                <Link key={sub.name} to={sub.path} className="sub-item">
-                                                                    {sub.name}
-                                                                </Link>
+                                                                sub.externalLink ? (
+                                                                    <a key={sub.name} href={sub.externalLink} target="_blank" rel="noopener noreferrer" className="sub-item">
+                                                                        {sub.name}
+                                                                    </a>
+                                                                ) : (
+                                                                    <Link key={sub.name} to={sub.path} className="sub-item">
+                                                                        {sub.name}
+                                                                    </Link>
+                                                                )
                                                             ))}
                                                         </div>
                                                     )}
@@ -141,9 +154,32 @@ const Navbar = () => {
                                     {link.dropdown && (
                                         <div className="mobile-dropdown">
                                             {link.dropdown.map(item => (
-                                                <Link key={item.name} to={item.path} className="mobile-sub-link">
-                                                    {item.name}
-                                                </Link>
+                                                <div className="mobile-sub-item-group" key={item.name}>
+                                                    {item.externalLink ? (
+                                                        <a href={item.externalLink} target="_blank" rel="noopener noreferrer" className="mobile-sub-link">
+                                                            {item.name}
+                                                        </a>
+                                                    ) : (
+                                                        <Link to={item.path} className="mobile-sub-link">
+                                                            {item.name}
+                                                        </Link>
+                                                    )}
+                                                    {item.subItems && (
+                                                        <div className="mobile-nested-dropdown">
+                                                            {item.subItems.map(sub => (
+                                                                sub.externalLink ? (
+                                                                    <a key={sub.name} href={sub.externalLink} target="_blank" rel="noopener noreferrer" className="mobile-nested-link">
+                                                                        {sub.name}
+                                                                    </a>
+                                                                ) : (
+                                                                    <Link key={sub.name} to={sub.path} className="mobile-nested-link">
+                                                                        {sub.name}
+                                                                    </Link>
+                                                                )
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
                                             ))}
                                         </div>
                                     )}
@@ -164,17 +200,17 @@ const Navbar = () => {
                     left: 0;
                     width: 100%;
                     z-index: 1000;
-                    padding: 1.5rem 0;
+                    padding: 2rem 0;
                     transition: var(--transition-normal);
                     background: transparent;
                 }
 
                 .navbar-new.scrolled {
-                    padding: 0.75rem 0;
-                    background: rgba(255, 255, 255, 0.85);
-                    backdrop-filter: blur(20px);
-                    box-shadow: var(--shadow-md);
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                    padding: 1rem 0;
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(25px);
+                    box-shadow: var(--shadow-lg);
+                    border-bottom: 1px solid rgba(2, 48, 71, 0.05);
                 }
 
                 .nav-wrapper {
@@ -190,49 +226,21 @@ const Navbar = () => {
                 }
 
                 .nav-logo img {
-                    height: 48px;
+                    height: 54px;
                     width: auto;
                     transition: var(--transition-normal);
                     filter: brightness(0) invert(1);
                 }
 
                 .navbar-new.scrolled .nav-logo img {
-                    height: 40px;
+                    height: 44px;
                     filter: none;
-                }
-
-                .logo-text {
-                    display: flex;
-                    flex-direction: column;
-                    line-height: 1;
-                }
-
-                .brand-name {
-                    font-family: var(--font-heading);
-                    font-weight: 800;
-                    font-size: 1.25rem;
-                    color: white;
-                    letter-spacing: 0.5px;
-                    transition: var(--transition-normal);
-                }
-
-                .navbar-new.scrolled .brand-name {
-                    color: var(--primary);
-                }
-
-                .brand-tagline {
-                    font-size: 0.7rem;
-                    color: var(--secondary);
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    margin-top: 2px;
                 }
 
                 .nav-menu {
                     display: flex;
                     align-items: center;
-                    gap: 2rem;
+                    gap: 2.5rem;
                 }
 
                 .nav-item {
@@ -241,11 +249,11 @@ const Navbar = () => {
 
                 .nav-link-new {
                     font-weight: 600;
-                    font-size: 0.95rem;
+                    font-size: 1rem;
                     color: white;
                     display: flex;
                     align-items: center;
-                    gap: 0.25rem;
+                    gap: 0.4rem;
                     padding: 0.5rem 0;
                     transition: var(--transition-normal);
                 }
@@ -255,7 +263,7 @@ const Navbar = () => {
                 }
 
                 .nav-link-new:hover, .nav-link-new.active {
-                    color: var(--secondary) !important;
+                    color: var(--accent) !important;
                 }
 
                 .chevron {
@@ -271,88 +279,82 @@ const Navbar = () => {
                     top: 100%;
                     left: 50%;
                     transform: translateX(-50%);
-                    min-width: 280px;
-                    padding: 1.5rem;
+                    min-width: 350px;
+                    max-height: 70vh;
+                    overflow-y: auto;
+                    padding: 0;
                     border-radius: var(--radius-lg);
-                    margin-top: 1rem;
+                    margin-top: 1.5rem;
                     box-shadow: var(--shadow-xl);
+                    background: rgba(255, 255, 255, 0.98);
+                    backdrop-filter: blur(25px);
+                    border: 1px solid rgba(2, 48, 71, 0.05);
+                }
+
+                /* Custom Scrollbar for Dropdown */
+                .dropdown-container::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .dropdown-container::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .dropdown-container::-webkit-scrollbar-thumb {
+                    background: rgba(2, 48, 71, 0.2);
+                    border-radius: 10px;
+                }
+                .dropdown-container::-webkit-scrollbar-thumb:hover {
+                    background: rgba(2, 48, 71, 0.5);
                 }
 
                 .dropdown-grid {
                     display: flex;
                     flex-direction: column;
-                    gap: 0.5rem;
-                }
-
-                .dropdown-item-wrapper {
-                    position: relative;
+                    gap: 0.4rem;
+                    padding: 1.5rem;
                 }
 
                 .dropdown-item {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    padding: 0.75rem 1rem;
+                    padding: 0.6rem 1rem;
                     border-radius: var(--radius-md);
-                    transition: var(--transition-fast);
-                    color: var(--text);
-                    font-weight: 500;
+                    transition: var(--transition-normal);
+                    color: var(--primary);
+                    font-weight: 600;
+                    background: transparent;
                 }
 
                 .dropdown-item:hover {
                     background: var(--background-alt);
-                    color: var(--secondary);
+                    color: var(--accent-hover);
+                    transform: translateX(5px);
                 }
 
                 .dropdown-sub-menu {
-                    padding-left: 1rem;
-                    margin-top: 0.25rem;
+                    padding-left: 1.25rem;
+                    margin-top: 0.2rem;
                     display: flex;
                     flex-direction: column;
                     gap: 0.25rem;
-                    border-left: 2px solid var(--background-alt);
-                    margin-left: 1rem;
+                    border-left: 3px solid var(--background-alt);
+                    margin-left: 1.25rem;
                 }
 
                 .sub-item {
-                    padding: 0.4rem 0.75rem;
-                    font-size: 0.85rem;
+                    padding: 0.4rem 1rem;
+                    font-size: 0.95rem;
                     color: var(--text-muted);
                     border-radius: var(--radius-sm);
-                }
-
-                .sub-item:hover {
-                    color: var(--secondary);
-                    background: rgba(99, 102, 241, 0.05);
-                }
-
-                .nav-actions {
-                    display: flex;
-                    align-items: center;
-                    gap: 1.25rem;
-                }
-
-                .icon-btn {
-                    background: none;
-                    border: none;
-                    color: var(--primary);
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 0.5rem;
-                    border-radius: var(--radius-full);
+                    font-weight: 500;
+                    display: block;
                     transition: var(--transition-fast);
                 }
 
-                .icon-btn:hover {
+                .sub-item:hover {
+                    color: var(--primary);
                     background: var(--background-alt);
-                    color: var(--secondary);
-                }
-
-                .btn-sm {
-                    padding: 0.5rem 1.25rem;
-                    font-size: 0.875rem;
+                    padding-left: 1.5rem;
                 }
 
                 .mobile-toggle-btn {
@@ -374,22 +376,23 @@ const Navbar = () => {
                     right: 0;
                     width: 85%;
                     height: 100vh;
-                    background: white;
+                    background: var(--white);
                     z-index: 1001;
-                    padding: 2rem;
+                    padding: 2.5rem;
                     display: flex;
                     flex-direction: column;
+                    box-shadow: var(--shadow-xl);
                 }
 
                 .mobile-sidebar-header {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    margin-bottom: 3rem;
+                    margin-bottom: 4rem;
                 }
 
                 .mobile-logo {
-                    height: 40px;
+                    height: 48px;
                 }
 
                 .mobile-nav-links {
@@ -398,28 +401,47 @@ const Navbar = () => {
                 }
 
                 .mobile-nav-item {
-                    margin-bottom: 1.5rem;
+                    margin-bottom: 2rem;
                 }
 
                 .mobile-nav-link {
-                    font-size: 1.25rem;
+                    font-size: 1.5rem;
                     font-weight: 700;
                     color: var(--primary);
                     display: block;
-                    margin-bottom: 0.75rem;
+                    margin-bottom: 1rem;
                 }
 
                 .mobile-dropdown {
                     display: flex;
                     flex-direction: column;
-                    gap: 0.5rem;
-                    padding-left: 1rem;
-                    border-left: 2px solid var(--background-alt);
+                    gap: 0.75rem;
+                    padding-left: 1.5rem;
+                    border-left: 3px solid var(--background-alt);
                 }
 
                 .mobile-sub-link {
-                    font-size: 0.95rem;
+                    font-size: 1.1rem;
                     color: var(--text-muted);
+                    font-weight: 600;
+                    margin-bottom: 0.75rem;
+                    display: block;
+                }
+
+                .mobile-nested-dropdown {
+                    padding-left: 1.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.6rem;
+                    margin-bottom: 1.5rem;
+                    border-left: 1px solid rgba(2, 48, 71, 0.1);
+                }
+
+                .mobile-nested-link {
+                    font-size: 1rem;
+                    color: var(--text);
+padding: 0.4rem 0;
+                    display: block;
                 }
 
                 .desktop-only {

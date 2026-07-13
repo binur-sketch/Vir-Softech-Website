@@ -1,7 +1,8 @@
 export const solutions = [
     {
-        title: "Enterprise Content Management",
+        title: "VsDox ECM",
         slug: "enterprise-content-management",
+        externalLink: "https://vsdox.com",
         description: "Secure, scalable, and cloud-ready platform for managing your enterprise content lifecycle.",
         longDescription: "VsDox ECM is a robust, open-source based capabilities built on the DSpace platform, designed to manage the entire lifecycle of your organization's content. From digitizing physical documents to managing born-digital assets, VsDox ensures your information is secure, accessible, and compliant. Whether deployed on-premise, on AWS, or Microsoft Azure, it scales effortlessly to meet the demands of large data archives.",
         features: [
@@ -20,8 +21,9 @@ export const solutions = [
         content: "Our Enterprise Content Management (ECM) solutions empower organizations to capture, store, activate, analyze, and automate business content. By leveraging advanced OCR, metadata tagging, and workflow automation, we turn your documents into a powerful knowledge base. Whether it's digitizing physical archives or managing born-digital assets, our VsDox platform ensures security, compliance, and accessibility."
     },
     {
-        title: "Eval Educational Solution Suite",
+        title: "eVAL Education Suite",
         slug: "eval-educational-solution-suite",
+        externalLink: "https://evalexam.com",
         description: "A comprehensive ecosystem for modern education and assessment.",
         longDescription: "The Eval Suite addresses the end-to-end needs of educational institutions, examination bodies, and recruitment agencies. We provide a modular ecosystem that digitizes every stage of the assessment lifecycle—from candidate registration to result declaration—ensuring integrity, speed, and accuracy.",
         features: [
@@ -33,107 +35,79 @@ export const solutions = [
         content: "The Eval Suite is designed to address the end-to-end needs of educational institutions and examination bodies. From candidate registration to result declaration, our modular solutions ensure integrity, efficiency, and scalability in the assessment process.",
         subItems: [
             {
-                title: "EVAL EXAMS",
-                slug: "eval-exams",
-                description: "End-to-end examination management system.",
-                longDescription: "EVAL EXAMS handles the entire lifecycle of an examination. It serves as the central command center for managing candidates, centers, and logistics.",
-                features: [
-                    "Candidate Registration & Admit Card Generation.",
-                    "Exam Center Management & Allocation.",
-                    "Attendance Tracking.",
-                    "Result Processing & Declaration."
-                ]
+                title: "OMR Software",
+                slug: "omr-software",
+                externalLink: "https://evalexam.com/omr-software"
             },
             {
-                title: "OMR Exam Software",
-                slug: "omr-exam-software",
-                description: "High-accuracy Optical Mark Recognition software.",
-                longDescription: "Our eVAL OMR software offers 100% accuracy in reading optical marks. It eliminates the need for expensive specialized scanners by working with standard flatbed/ADF scanners and normal A4 paper, making it a cost-effective choice for schools and universities.",
-                features: [
-                    "100% Accuracy: Advanced algorithms tailored for bubble sheet recognition.",
-                    "Hardware Agnostic: Works with standard office printers and scanners.",
-                    "Custom Form Designer: Create your own OMR sheets with ease.",
-                    "Advanced Reporting: Generate graphical analysis and detailed merit lists."
-                ]
+                title: "On-Screen Marking",
+                slug: "on-screen-marking",
+                externalLink: "https://evalexam.com/on-screen-marking"
             },
             {
-                title: "Computer Based Test Platform",
-                slug: "computer-based-test-platform",
-                description: "Secure and scalable online testing.",
-                longDescription: "Conduct exams anywhere, anytime. Our CBT platform supports high-stakes entrance exams and internal assessments with robust security measures to prevent malpractice.",
-                features: [
-                    "AI-Proctoring: Automated monitoring of candidate behavior.",
-                    "Question Bank Support: Randomization and various question types.",
-                    "Real-time Analytics: Instant results and performance metrics.",
-                    "Offline Support: Sync capabilities for low-bandwidth areas."
-                ]
+                title: "Question Paper Management",
+                slug: "question-paper-management",
+                externalLink: "https://evalexam.com/question-paper-management"
             },
             {
-                title: "Learning Management Solution",
-                slug: "learning-management-solution",
-                description: "Interactive platform for teaching and learning.",
-                longDescription: "Our LMS facilitates seamless course delivery, enhancing student engagement through multimedia content and collaborative tools. It bridges the gap between educators and learners.",
-                features: [
-                    "Course Content Management.",
-                    "Student Progress Tracking.",
-                    "Discussion Forums & Collaboration Tools.",
-                    "Integrated Assessments."
-                ]
+                title: "AI Proctoring",
+                slug: "ai-proctoring",
+                externalLink: "https://evalexam.com/ai-proctoring"
             },
             {
-                title: "On-Screen Marking System",
-                slug: "on-screen-marking-platform",
-                description: "Digitize the evaluation of physical answer scripts.",
-                longDescription: "eVAL OSM revolutionizes the grading process by digitizing answer booklets. Evaluators can mark scripts on-screen from secure remote locations, ensuring faster results and eliminating logistical risks.",
-                features: [
-                    "Digital Evaluation: Mark scanned answer booklets on screen.",
-                    "Auto-Totalling: Eliminates calculation errors.",
-                    "Masking: Anonymizes student details for unbiased grading.",
-                    "Moderation Workflow: Supports multi-tier review processes."
-                ]
+                title: "CBT Platform",
+                slug: "cbt-platform",
+                externalLink: "https://evalexam.com/cbt-platform"
+            },
+            {
+                title: "Olympiad Portal",
+                slug: "olympiad-portal",
+                externalLink: "https://evalexam.com/olympiad-portal"
             }
         ]
     },
     {
         title: "Print Product Engineering",
         slug: "print-product-engineering",
-        description: "Innovative software solutions for the print industry.",
-        longDescription: "We specialize in developing custom software for the print and packaging industry. Our deep understanding of PDF workflows, color management, and RIP technologies allows us to build solutions that optimize production and ensure quality.",
+        description: "Your go-to partner for IT-led process transformation for product life-cycle management, development or workflow optimization needs, with a special focus on print.",
+        longDescription: "In today's dynamic economy, print and publishing companies must rapidly introduce new products and features to gain competitive advantage. Vir Softech is the ideal value-added software service provider for print and publishing companies that need to move quickly without sacrificing quality while maintaining a profit margin. We have a world-class team of computer scientists with decades of experience in managing all aspects of Imaging technologies and replacing RIP technologies with comparable or improved performance and quality.",
         features: [
-            "Prepress Automation: Streamline file preparation for print.",
-            "Color Management: Ensure color consistency across devices.",
-            "Workflow Optimization: Reduce manual touchpoints and errors.",
-            "RIP Solutions: High-performance raster image processing."
+            "Print Technology Expertise: Proven experience in RIP, color management, job management & settings, printer & cutter workflows, half-toning, VDP, and imposition.",
+            "Advanced Functions: Deep knowledge of bands generation, nesting, tiling, step & repeat.",
+            "Market Segment Focus: Target RFPs for specific market segments, such as production, industrial, commercial, large format and enterprise printing.",
+            "Global OEM Engagement: Strong partnerships with print OEMs across geographies such as Japan, USA, and Europe.",
+            "Core Competencies: Super-strong expertise on PostScript, PDF, PCL & XPS, and implementation partner for Harlequin & Mako."
         ]
     },
     {
         title: "Custom Product Engineering",
         slug: "custom-product-engineering",
-        description: "Turning your ideas into robust software products.",
-        longDescription: "Our product engineering services cover the full software development lifecycle. We partner with ISVs and enterprises to build scalable, secure, and high-performance software tailored to unique business requirements.",
+        externalLink: "/solutions/print-product-engineering#customm_services",
+        description: "Offload your end-to-end software development for business-leading transformation.",
+        longDescription: "With Vir Softech engineering services you can offload your end-to-end software development for business-leading transformation in managing documents, optimizing education, bringing new age printing services, or workflow management of artwork and design in print and packaging setups. You can rely on us to meet all of your current and future engineering and technology needs in multiple models: solution-level, module-level, or skill-level.",
         features: [
-            "Full Lifecycle Development: From ideation to deployment.",
-            "Technology Expertise: MERN, Python, Java, and more.",
-            "Agile Methodology: Iterative delivery for faster time-to-market.",
-            "QA & Testing: Comprehensive automated and manual testing."
+            "New Product Development: Product ideation, conceptualization, Prototyping, Beta testing & go-to-market.",
+            "Product Transformation: Legacy transformation and regular upgrades, Technology assessment & migration, Mobile, Cloud, SaaS enablement.",
+            "Maintenance & Testing: Life-cycle management, Product enhancements, Product maintenance & testing.",
+            "UI/UX Development: Visual design and asset creation, Front-end engineering, HTML/CSS, Wireframes, Concept prototype."
         ]
     },
     {
-        title: "Design and Artwork Automation",
+        title: "Design & Artwork Automation",
         slug: "design-artwork-automation",
-        description: "Accelerate your creative workflows with custom plugins.",
-        longDescription: "Automate repetitive design tasks with our custom plugins and scripts for Adobe Creative Cloud (InDesign, Illustrator, Photoshop) and CorelDraw. We help agencies and prepress houses reduce manual errors and speed up artwork generation.",
+        description: "Reduce significant time and effort in designing artwork and manage design processes using automation.",
+        longDescription: "Automate the artwork design process with Vir Softech's custom plugins for desktop and digital publishing to create high quality artwork with 100% accuracy. For regulated industries, such as pharma and consumer durables, there is a need to customize the product packaging to cover the regulatory aspects of countries where the product is being sold. Designing multiple versions of product designs for folding boxes, blisters, packets, and leaflets is complex, error-prone and costly. With our custom plugins, you can automate this process and get it all at a much lower time, money, and review effort.",
         features: [
-            "Custom Plugins: Tailored extensions for Adobe & Corel suites.",
-            "Automated Layout: Data-driven placement of text and images.",
-            "PDF Automation: Advanced manipulation and optimization of PDFs.",
-            "Error Reduction: Eliminate manual copy-paste errors."
+            "Custom Plugins: Developed in C++, scripts, VBA, VSTA & HTML for Windows and Mac OS across Adobe (InDesign, Illustrator, Photoshop, Acrobat) and CorelDraw.",
+            "Workflow Optimization: Manage and enhance PDF workflows, optimize web documents for printing and content for various market segments.",
+            "Automated Layouts: Automated placement of text, images and tables, multi-column alignment, multi-language support, font and paragraph styling.",
+            "Variable Data Printing: Improve printing and packaging workflows with powerful VDP and imposition capabilities."
         ],
         benefits: [
-            "Reduce artwork generation time by up to 75%.",
-            "Ensure 100% accuracy in text and asset placement.",
-            "Streamline approval workflows.",
-            "Handle multi-language adaptations effortlessly."
+            "Nearly 75% reduction in time for designing artwork compared to manual processes.",
+            "Create high quality artwork with 100% accuracy, eliminating costly errors.",
+            "Significantly reduce investment in time, cost, and review effort.",
+            "Seamlessly replace legacy Flash-based extensions with modern CEP HTML-based plugins."
         ]
     }
 ];

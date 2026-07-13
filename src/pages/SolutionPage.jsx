@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { getSolutionBySlug } from '../data/solutions';
+import { getSolutionBySlug, getAllSolutions } from '../data/solutions';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowLeft, ArrowRight, MessageSquare, Download, Share2 } from 'lucide-react';
@@ -10,8 +10,11 @@ const SolutionPage = () => {
     const solution = getSolutionBySlug(slug);
 
     useEffect(() => {
+        if (solution && solution.externalLink) {
+            window.location.href = solution.externalLink;
+        }
         window.scrollTo(0, 0);
-    }, [slug]);
+    }, [slug, solution]);
 
     if (!solution) {
         return (
@@ -131,9 +134,13 @@ const SolutionPage = () => {
                             <div className="sidebar-nav card">
                                 <h3>Other Solutions</h3>
                                 <div className="sidebar-nav-links">
-                                    <Link to="/solutions/enterprise-content-management">VsDox ECM</Link>
-                                    <Link to="/solutions/eval-educational-solution-suite">eVAL Exams</Link>
-                                    <Link to="/solutions/print-product-engineering">Print Products</Link>
+                                    {getAllSolutions().filter(s => s.slug !== slug).map(s => (
+                                        s.externalLink ? (
+                                            <a key={s.slug} href={s.externalLink} target="_blank" rel="noopener noreferrer">{s.title}</a>
+                                        ) : (
+                                            <Link key={s.slug} to={`/solutions/${s.slug}`}>{s.title}</Link>
+                                        )
+                                    ))}
                                 </div>
                             </div>
                         </aside>

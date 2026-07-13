@@ -1,286 +1,290 @@
 import { motion } from 'framer-motion';
-import { Target, Users, Zap, Award, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Target, Lightbulb, Users, Award, ShieldCheck, Zap } from 'lucide-react';
+import WavyDivider from './WavyDivider';
 
 const About = () => {
     const stats = [
-        { label: 'Years of Innovation', value: '10+', icon: <Zap size={20} /> },
-        { label: 'Global Clients', value: '100+', icon: <Users size={20} /> },
-        { label: 'Solutions Delivered', value: '250+', icon: <Target size={20} /> },
-        { label: 'Certifications', value: '15+', icon: <Award size={20} /> },
+        { label: 'Years of Excellence', value: '10+', icon: <Award className="stat-icon" /> },
+        { label: 'Global Clients', value: '200+', icon: <Users className="stat-icon" /> },
+        { label: 'Projects Delivered', value: '500+', icon: <Zap className="stat-icon" /> }
+    ];
+
+    const values = [
+        {
+            title: "Innovation First",
+            description: "We constantly push the boundaries of what's possible in imaging and digital transformation.",
+            icon: <Lightbulb size={24} />
+        },
+        {
+            title: "Integrity",
+            description: "Building trust through transparency and unwavering commitment to quality.",
+            icon: <ShieldCheck size={24} />
+        },
+        {
+            title: "Customer Success",
+            description: "Our solutions are engineered to ensure our partners achieve their strategic goals.",
+            icon: <Users size={24} />
+        }
     ];
 
     return (
         <section className="about-section" id="about">
             <div className="container">
                 <div className="about-grid">
-                    {/* Visual Side */}
                     <motion.div 
-                        className="about-visual"
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
+                        className="about-content"
                     >
-                        <div className="image-stack">
-                            <div className="main-image-container">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1522071823991-b99c223c7483?q=80&w=1200&auto=format&fit=crop" 
-                                    alt="Team collaborating" 
-                                    className="main-image"
-                                />
-                                <div className="image-overlay"></div>
-                            </div>
-                            <div className="experience-badge glass">
-                                <span className="exp-number">10+</span>
-                                <span className="exp-text">Years of <br />Engineering Excellence</span>
-                            </div>
-                        </div>
-                        <div className="stats-grid-new">
+                        <span className="badge-primary">Our Story</span>
+                        <h2 className="section-title">Bridging <span className="text-accent">Technology</span> and Vision</h2>
+                        <p className="about-text">
+                            Founded in 2015, Vir Softech has emerged as a powerhouse in 
+                            <strong> Imaging</strong>, <strong>Computer Vision</strong>, and 
+                            <strong> Enterprise Content Management</strong>.
+                        </p>
+                        <p className="about-text">
+                            With offices in India and Japan, we bridge the gap between complex 
+                            engineering challenges and intuitive digital solutions, serving 
+                            Fortune 500 companies and government institutions alike.
+                        </p>
+                        
+                        <div className="stats-grid">
                             {stats.map((stat, i) => (
-                                <div key={i} className="stat-item-new">
+                                <div key={i} className="stat-card">
                                     <div className="stat-icon-wrapper">{stat.icon}</div>
                                     <div className="stat-info">
-                                        <h4 className="stat-val">{stat.value}</h4>
-                                        <p className="stat-lab">{stat.label}</p>
+                                        <h3 className="stat-value">{stat.value}</h3>
+                                        <p className="stat-label">{stat.label}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </motion.div>
 
-                    {/* Content Side */}
                     <motion.div 
-                        className="about-content-new"
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
+                        className="about-image-container"
                     >
-                        <span className="badge-accent">Our Journey & Vision</span>
-                        <h2 className="section-title">
-                            Engineering Intelligence for <span className="text-gradient">Global Transformation</span>
-                        </h2>
-                        <p className="about-lead">
-                            Vir Softech is a premier technology company specializing in Imaging, Computer Vision, 
-                            and Enterprise Content Management solutions. 
-                        </p>
-                        <p className="about-text">
-                            With dual headquarters in <strong>Noida, India</strong> and <strong>Tokyo, Japan</strong>, 
-                            we bridge the gap between high-end innovation and cost-effective execution. 
-                            Our team of engineers and visionaries work tirelessly to build products that 
-                            revolutionize how businesses handle digital assets and assessment ecosystems.
-                        </p>
-
-                        <div className="about-checklist">
-                            <div className="check-item">
-                                <CheckCircle2 size={20} className="text-accent" />
-                                <div>
-                                    <h5>Product-First Mindset</h5>
-                                    <p>We build scalable products like vsDox and eVAL from the ground up.</p>
-                                </div>
-                            </div>
-                            <div className="check-item">
-                                <CheckCircle2 size={20} className="text-accent" />
-                                <div>
-                                    <h5>Cross-Border Synergy</h5>
-                                    <p>Harnessing the technological precision of Japan and the engineering scale of India.</p>
-                                </div>
-                            </div>
+                        <div className="main-image-wrapper">
+                            <img 
+                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" 
+                                alt="Team Collaboration" 
+                                className="about-main-image"
+                            />
+                            <div className="image-accent-blob"></div>
                         </div>
-
-                        <div className="about-actions">
-                            <Link to="/about" className="btn btn-primary">
-                                More About Our Story
-                            </Link>
+                        
+                        <div className="values-overlay-grid">
+                            {values.map((val, i) => (
+                                <div key={i} className="value-mini-card glass">
+                                    <div className="value-icon">{val.icon}</div>
+                                    <div>
+                                        <h4>{val.title}</h4>
+                                        <p>{val.description}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </motion.div>
                 </div>
             </div>
 
+            <WavyDivider position="bottom" color="var(--background-alt)" />
+
             <style jsx>{`
                 .about-section {
-                    padding: var(--spacing-xl) 0;
+                    padding: var(--spacing-xl) 0 160px;
                     background: var(--white);
                     position: relative;
+                    overflow: hidden;
                 }
 
                 .about-grid {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
-                    gap: 5rem;
+                    gap: 6rem;
                     align-items: center;
                 }
 
-                .about-visual {
-                    position: relative;
-                }
-
-                .image-stack {
-                    position: relative;
-                    margin-bottom: 3rem;
-                }
-
-                .main-image-container {
-                    border-radius: var(--radius-xl);
-                    overflow: hidden;
-                    box-shadow: var(--shadow-xl);
-                    position: relative;
-                }
-
-                .main-image {
-                    width: 100%;
-                    height: 450px;
-                    object-fit: cover;
-                    display: block;
-                }
-
-                .image-overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.4));
-                }
-
-                .experience-badge {
-                    position: absolute;
-                    bottom: -30px;
-                    right: -30px;
-                    padding: 2rem;
-                    border-radius: var(--radius-lg);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                    z-index: 10;
-                    background: rgba(255, 255, 255, 0.9);
-                    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-                }
-
-                .exp-number {
-                    font-size: 3rem;
-                    font-weight: 900;
-                    color: var(--secondary);
-                    line-height: 1;
-                }
-
-                .exp-text {
-                    font-size: 0.8rem;
+                .badge-primary {
+                    display: inline-block;
+                    padding: 0.6rem 1.5rem;
+                    background: rgba(33, 158, 188, 0.1);
+                    color: var(--primary-light);
+                    border-radius: var(--radius-full);
                     font-weight: 700;
-                    color: var(--primary);
+                    font-size: 0.85rem;
                     text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    margin-top: 0.5rem;
+                    letter-spacing: 2px;
+                    margin-bottom: 2rem;
                 }
 
-                .stats-grid-new {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 1.5rem;
-                    margin-top: 2rem;
-                }
-
-                .stat-item-new {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                    padding: 1.25rem;
-                    border-radius: var(--radius-md);
-                    background: var(--background-alt);
-                    transition: var(--transition-fast);
-                }
-
-                .stat-item-new:hover {
-                    background: var(--white);
-                    box-shadow: var(--shadow-md);
-                }
-
-                .stat-icon-wrapper {
-                    width: 44px;
-                    height: 44px;
-                    border-radius: var(--radius-sm);
-                    background: var(--white);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: var(--secondary);
-                    box-shadow: var(--shadow-sm);
-                }
-
-                .stat-val {
-                    font-size: 1.25rem;
-                    font-weight: 700;
+                .section-title {
+                    margin-bottom: 2rem;
                     color: var(--primary);
-                    margin: 0;
+                    font-size: clamp(2.5rem, 5vw, 3.5rem);
+                    line-height: 1.1;
                 }
 
-                .stat-lab {
-                    font-size: 0.75rem;
-                    color: var(--text-muted);
-                    font-weight: 600;
-                    margin: 0;
-                }
-
-                .about-lead {
-                    font-size: 1.25rem;
-                    font-weight: 600;
-                    color: var(--primary);
-                    margin-bottom: 1.5rem;
+                .text-accent {
+                    color: var(--accent);
                 }
 
                 .about-text {
+                    font-size: 1.2rem;
                     color: var(--text-muted);
                     line-height: 1.8;
                     margin-bottom: 2rem;
                 }
 
-                .about-checklist {
+                .stats-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 2rem;
+                    margin-top: 4rem;
+                }
+
+                .stat-card {
+                    display: flex;
+                    align-items: center;
+                    gap: 1.5rem;
+                    padding: 2rem;
+                    background: var(--background-alt);
+                    border-radius: var(--radius-lg);
+                    transition: var(--transition-normal);
+                    border: 1px solid rgba(2, 48, 71, 0.05);
+                }
+
+                .stat-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: var(--shadow-lg);
+                    border-color: var(--accent);
+                }
+
+                .stat-icon-wrapper {
+                    color: var(--primary);
+                }
+
+                .stat-value {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: var(--primary);
+                    margin-bottom: 0.25rem;
+                    font-family: var(--font-heading);
+                }
+
+                .stat-label {
+                    font-size: 0.95rem;
+                    color: var(--text-muted);
+                    font-weight: 600;
+                }
+
+                .about-image-container {
+                    position: relative;
+                }
+
+                .main-image-wrapper {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .about-main-image {
+                    width: 100%;
+                    height: 550px;
+                    object-fit: cover;
+                    border-radius: var(--radius-xl);
+                    box-shadow: var(--shadow-xl);
+                }
+
+                .image-accent-blob {
+                    position: absolute;
+                    top: -30px;
+                    right: -30px;
+                    width: 200px;
+                    height: 200px;
+                    background: var(--accent);
+                    opacity: 0.2;
+                    border-radius: 50%;
+                    z-index: -1;
+                    filter: blur(40px);
+                }
+
+                .values-overlay-grid {
+                    position: absolute;
+                    bottom: -40px;
+                    left: -40px;
                     display: flex;
                     flex-direction: column;
                     gap: 1.5rem;
-                    margin-bottom: 3rem;
+                    max-width: 380px;
+                    z-index: 10;
                 }
 
-                .check-item {
+                .value-mini-card {
                     display: flex;
-                    gap: 1rem;
+                    gap: 1.25rem;
+                    padding: 1.5rem;
+                    border-radius: var(--radius-lg);
+                    background: rgba(255, 255, 255, 0.85);
+                    backdrop-filter: blur(20px);
+                    box-shadow: var(--shadow-lg);
+                    border: 1px solid rgba(255, 255, 255, 0.5);
                 }
 
-                .check-item h5 {
-                    font-size: 1.1rem;
-                    margin-bottom: 0.25rem;
-                }
-
-                .check-item p {
-                    font-size: 0.95rem;
-                    color: var(--text-light);
-                    margin: 0;
-                }
-
-                .text-accent {
-                    color: var(--accent);
+                .value-icon {
+                    width: 48px;
+                    height: 48px;
+                    background: var(--primary);
+                    color: white;
+                    border-radius: var(--radius-md);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     flex-shrink: 0;
+                }
+
+                .value-mini-card h4 {
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                    color: var(--primary);
+                    margin-bottom: 0.4rem;
+                }
+
+                .value-mini-card p {
+                    font-size: 0.9rem;
+                    color: var(--text-muted);
+                    margin: 0;
+                    line-height: 1.5;
                 }
 
                 @media (max-width: 1024px) {
                     .about-grid {
                         grid-template-columns: 1fr;
-                        gap: 4rem;
+                        gap: 5rem;
                     }
-                    .about-visual {
-                        order: 2;
+                    .about-image-container {
+                        max-width: 600px;
+                        margin: 0 auto;
                     }
-                    .experience-badge {
-                        right: 20px;
-                        bottom: -20px;
+                    .values-overlay-grid {
+                        position: static;
+                        margin-top: 3rem;
+                        max-width: 100%;
                     }
                 }
 
                 @media (max-width: 640px) {
-                    .stats-grid-new {
+                    .stats-grid {
                         grid-template-columns: 1fr;
+                    }
+                    .about-main-image {
+                        height: 400px;
                     }
                 }
             `}</style>

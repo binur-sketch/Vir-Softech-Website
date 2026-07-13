@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, Monitor, BookOpen, Printer, PenTool, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { solutions } from '../data/solutions';
+import WavyDivider from './WavyDivider';
 
 const Services = () => {
     // Map icons to solution slugs or titles
@@ -81,9 +82,15 @@ const Services = () => {
                                 </div>
 
                                 <div className="card-footer">
-                                    <Link to={`/solutions/${service.slug}`} className="learn-more-link">
-                                        Explore Solution <ArrowUpRight size={18} />
-                                    </Link>
+                                    {service.externalLink ? (
+                                        <a href={service.externalLink} target="_blank" rel="noopener noreferrer" className="learn-more-link">
+                                            Explore Solution <ArrowUpRight size={18} />
+                                        </a>
+                                    ) : (
+                                        <Link to={`/solutions/${service.slug}`} className="learn-more-link">
+                                            Explore Solution <ArrowUpRight size={18} />
+                                        </Link>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>
@@ -91,7 +98,7 @@ const Services = () => {
                 </div>
 
                 <div className="services-cta">
-                    <Link to="/solutions" className="btn btn-secondary">
+                    <Link to="/solutions" className="btn btn-primary">
                         View All Specialized Services
                     </Link>
                 </div>
@@ -106,14 +113,14 @@ const Services = () => {
 
                 .section-header-new {
                     text-align: center;
-                    margin-bottom: 4rem;
+                    margin-bottom: 5rem;
                 }
 
                 .badge-accent {
                     display: inline-block;
-                    padding: 0.5rem 1.25rem;
-                    background: rgba(99, 102, 241, 0.1);
-                    color: var(--secondary);
+                    padding: 0.6rem 1.5rem;
+                    background: rgba(33, 158, 188, 0.1);
+                    color: var(--primary-light);
                     border-radius: var(--radius-full);
                     font-weight: 700;
                     font-size: 0.85rem;
@@ -124,39 +131,41 @@ const Services = () => {
 
                 .section-title {
                     margin-bottom: 1.5rem;
+                    color: var(--primary);
                 }
 
                 .section-subtitle {
                     max-width: 700px;
                     margin: 0 auto;
                     color: var(--text-muted);
-                    font-size: 1.15rem;
+                    font-size: 1.25rem;
                 }
 
                 .services-grid-new {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                    gap: 2rem;
-                    margin-bottom: 4rem;
+                    gap: 3rem;
+                    margin-bottom: 5rem;
                 }
 
                 .service-card-new {
                     background: var(--white);
-                    border-radius: var(--radius-xl);
-                    border: 1px solid rgba(0, 0, 0, 0.05);
+                    border-radius: var(--radius-lg);
+                    border: 1px solid rgba(2, 48, 71, 0.05);
                     transition: var(--transition-normal);
                     height: 100%;
                     overflow: hidden;
+                    box-shadow: var(--shadow-md);
                 }
 
                 .service-card-new:hover {
-                    transform: translateY(-10px);
+                    transform: translateY(-12px);
                     box-shadow: var(--shadow-xl);
                     border-color: var(--accent);
                 }
 
                 .card-inner {
-                    padding: 2.5rem;
+                    padding: 3rem;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
@@ -164,9 +173,9 @@ const Services = () => {
 
                 .card-icon-wrapper {
                     position: relative;
-                    width: 64px;
-                    height: 64px;
-                    margin-bottom: 2rem;
+                    width: 72px;
+                    height: 72px;
+                    margin-bottom: 2.5rem;
                 }
 
                 .icon-bg {
@@ -175,16 +184,17 @@ const Services = () => {
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background: var(--gradient-accent);
-                    opacity: 0.1;
-                    border-radius: 16px;
-                    transform: rotate(-10deg);
+                    background: var(--primary);
+                    opacity: 0.05;
+                    border-radius: 20px;
+                    transform: rotate(-12deg);
                     transition: var(--transition-normal);
                 }
 
                 .service-card-new:hover .icon-bg {
                     transform: rotate(0deg);
-                    opacity: 0.2;
+                    opacity: 0.15;
+                    background: var(--accent);
                 }
 
                 .icon-main {
@@ -195,41 +205,46 @@ const Services = () => {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    color: var(--secondary);
+                    color: var(--primary);
+                }
+
+                .service-card-new:hover .icon-main {
+                    color: var(--accent-hover);
                 }
 
                 .card-title {
-                    font-size: 1.5rem;
-                    margin-bottom: 1rem;
+                    font-size: 1.75rem;
+                    font-weight: 700;
+                    margin-bottom: 1.25rem;
                     color: var(--primary);
                 }
 
                 .card-description {
                     color: var(--text-muted);
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     line-height: 1.6;
-                    margin-bottom: 2rem;
+                    margin-bottom: 2.5rem;
                 }
 
                 .card-features {
                     list-style: none;
-                    margin-bottom: 2.5rem;
+                    margin-bottom: 3rem;
                     display: flex;
                     flex-direction: column;
-                    gap: 0.75rem;
+                    gap: 1rem;
                 }
 
                 .card-features li {
                     display: flex;
                     align-items: center;
-                    gap: 0.75rem;
-                    font-size: 0.9rem;
+                    gap: 1rem;
+                    font-size: 1rem;
                     font-weight: 500;
                     color: var(--text);
                 }
 
                 .feature-icon {
-                    color: var(--success);
+                    color: var(--accent);
                 }
 
                 .card-footer {
@@ -241,14 +256,14 @@ const Services = () => {
                 .learn-more-link {
                     display: flex;
                     align-items: center;
-                    gap: 0.5rem;
+                    gap: 0.6rem;
                     font-weight: 700;
-                    color: var(--secondary);
-                    font-size: 0.95rem;
+                    color: var(--primary);
+                    font-size: 1.05rem;
                 }
 
                 .learn-more-link:hover {
-                    color: var(--accent-hover);
+                    color: var(--accent);
                 }
 
                 .services-cta {
@@ -258,10 +273,13 @@ const Services = () => {
                 @media (max-width: 768px) {
                     .services-grid-new {
                         grid-template-columns: 1fr;
+                        gap: 2rem;
                     }
                     .service-card-new {
-                        max-width: 450px;
-                        margin: 0 auto;
+                        max-width: 100%;
+                    }
+                    .card-inner {
+                        padding: 2rem;
                     }
                 }
             `}</style>

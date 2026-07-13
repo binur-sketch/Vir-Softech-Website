@@ -30,7 +30,7 @@ const Careers = () => {
 
     return (
         <div className="page-careers">
-            <PageHero 
+            <PageHero
                 title="Join Our Mission"
                 subtitle="Build the future of digital transformation and imaging intelligence with a global team."
                 bgImage="https://images.unsplash.com/photo-1522071823991-b99c223c7483?q=80&w=2400&auto=format&fit=crop"
@@ -39,7 +39,7 @@ const Careers = () => {
             <section className="section careers-intro">
                 <div className="container">
                     <div className="grid-2 align-center">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -67,8 +67,8 @@ const Careers = () => {
 
                     <div className="jobs-container-new">
                         {jobs.map((job, index) => (
-                            <motion.div 
-                                key={index} 
+                            <motion.div
+                                key={index}
                                 className="job-row-card card"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ const Careers = () => {
 
                     <div className="careers-footer text-center">
                         <p>Don't see a fitting role? We're always looking for talent.</p>
-                        <a href="mailto:careers@virsoftech.com" className="email-link">careers@virsoftech.com</a>
+                        <a href="mailto:career@virsoftech.com" className="email-link">career@virsoftech.com</a>
                     </div>
                 </div>
             </section>

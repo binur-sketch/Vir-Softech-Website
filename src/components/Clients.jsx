@@ -1,16 +1,10 @@
 import { motion } from 'framer-motion';
 
-const Clients = () => {
-    // Representative clients for the UI demo
-    const clients = [
-        { name: "Government of India", type: "Public Sector" },
-        { name: "Global Edu Corp", type: "Education" },
-        { name: "PrintMaster Japan", type: "Manufacturing" },
-        { name: "SecureDocs US", type: "Legal Tech" },
-        { name: "TechVision Tokyo", type: "AI & CV" },
-        { name: "Heritage Archives", type: "Heritage & ECM" }
-    ];
+// Dynamically import all client logos
+const logoModules = import.meta.glob('../assets/clients/*.{png,jpg,jpeg,svg,webp,avif}', { eager: true });
+const clientLogos = Object.values(logoModules).map(mod => mod.default);
 
+const Clients = () => {
     return (
         <section className="clients-section">
             <div className="container">
@@ -19,22 +13,15 @@ const Clients = () => {
                     <div className="clients-divider"></div>
                 </div>
 
-                <div className="clients-grid-new">
-                    {clients.map((client, index) => (
-                        <motion.div 
-                            key={index}
-                            className="client-card-new"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                        >
-                            <div className="client-logo-placeholder">
-                                <span className="client-name-text">{client.name}</span>
-                                <span className="client-type-text">{client.type}</span>
+                <div className="slider-container">
+                    <div className="logo-track">
+                        {/* Double the logos for seamless infinite loop */}
+                        {[...clientLogos, ...clientLogos].map((logo, index) => (
+                            <div key={index} className="logo-slide">
+                                <img src={logo} alt={`Client ${index}`} />
                             </div>
-                        </motion.div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
                 <div className="trust-metrics">
@@ -43,7 +30,7 @@ const Clients = () => {
                         <span className="metric-label">Successful Deployments</span>
                     </div>
                     <div className="metric-item">
-                        <span className="metric-value">50M+</span>
+                        <span className="metric-value">250M+</span>
                         <span className="metric-label">Documents Processed</span>
                     </div>
                     <div className="metric-item">
@@ -55,112 +42,135 @@ const Clients = () => {
 
             <style jsx>{`
                 .clients-section {
-                    padding: var(--spacing-lg) 0;
-                    background: var(--background-alt);
-                    border-top: 1px solid rgba(0, 0, 0, 0.05);
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                    padding: var(--spacing-xl) 0;
+                    background: var(--white);
+                    position: relative;
+                    overflow: hidden;
                 }
 
                 .clients-header {
                     display: flex;
                     align-items: center;
                     gap: 2rem;
-                    margin-bottom: 3rem;
+                    margin-bottom: 5rem;
                 }
 
                 .clients-label {
                     white-space: nowrap;
-                    font-size: 0.875rem;
+                    font-size: 0.95rem;
                     font-weight: 700;
-                    color: var(--text-light);
+                    color: var(--primary);
                     text-transform: uppercase;
-                    letter-spacing: 1.5px;
+                    letter-spacing: 2px;
                 }
 
                 .clients-divider {
-                    height: 1px;
-                    background: rgba(0, 0, 0, 0.1);
+                    height: 2px;
+                    background: var(--background-alt);
                     flex: 1;
+                    border-radius: var(--radius-full);
                 }
 
-                .clients-grid-new {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                    gap: 1.5rem;
-                    margin-bottom: 4rem;
+                /* Slider Styles */
+                .slider-container {
+                    position: relative;
+                    width: 100%;
+                    overflow: hidden;
+                    padding: 40px 0;
+                    margin-bottom: 6rem;
+                    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+                    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
                 }
 
-                .client-card-new {
-                    background: white;
-                    padding: 2rem 1.5rem;
-                    border-radius: var(--radius-lg);
+                .logo-track {
+                    display: flex;
+                    width: max-content;
+                    animation: scroll 80s linear infinite;
+                    align-items: center;
+                }
+
+                .logo-track:hover {
+                    animation-play-state: paused;
+                }
+
+                @keyframes scroll {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+
+                .logo-slide {
+                    flex-shrink: 0;
+                    width: 200px;
+                    height: 120px;
+                    margin: 0 40px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    transition: var(--transition-normal);
-                    border: 1px solid rgba(0, 0, 0, 0.03);
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    background: var(--background-alt);
+                    border-radius: var(--radius-lg);
+                    padding: 1.5rem;
                 }
 
-                .client-card-new:hover {
-                    transform: translateY(-5px);
+                .logo-slide:hover {
+                    transform: scale(1.05) translateY(-5px);
                     box-shadow: var(--shadow-lg);
-                    border-color: var(--accent);
+                    background: var(--white);
                 }
 
-                .client-logo-placeholder {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
+                .logo-slide img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain;
+                    filter: grayscale(1);
+                    opacity: 0.7;
+                    transition: all 0.3s ease;
                 }
 
-                .client-name-text {
-                    font-weight: 800;
-                    font-size: 1.1rem;
-                    color: var(--primary);
-                    margin-bottom: 0.25rem;
-                    font-family: var(--font-heading);
-                }
-
-                .client-type-text {
-                    font-size: 0.7rem;
-                    color: var(--text-light);
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    font-weight: 600;
+                .logo-slide:hover img {
+                    filter: grayscale(0);
+                    opacity: 1;
                 }
 
                 .trust-metrics {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-                    gap: 2rem;
+                    gap: 3rem;
                     text-align: center;
-                    padding-top: 3rem;
-                    border-top: 1px solid rgba(0, 0, 0, 0.05);
+                    padding: 5rem 2rem;
+                    background: var(--background-alt);
+                    border-radius: var(--radius-xl);
                 }
 
                 .metric-value {
                     display: block;
-                    font-size: 2.5rem;
-                    font-weight: 800;
-                    color: var(--secondary);
+                    font-size: 3.5rem;
+                    font-weight: 700;
+                    color: var(--primary);
                     font-family: var(--font-heading);
                     margin-bottom: 0.5rem;
+                    letter-spacing: -1px;
                 }
 
                 .metric-label {
-                    font-size: 0.9rem;
+                    font-size: 1.1rem;
                     color: var(--text-muted);
                     font-weight: 600;
                 }
 
                 @media (max-width: 768px) {
-                    .clients-grid-new {
-                        grid-template-columns: repeat(2, 1fr);
-                    }
                     .trust-metrics {
                         grid-template-columns: 1fr;
-                        gap: 2rem;
+                        gap: 3rem;
+                        padding: 3rem 1.5rem;
+                    }
+                    .logo-slide {
+                        width: 160px;
+                        height: 100px;
+                        margin: 0 20px;
+                    }
+                    .metric-value {
+                        font-size: 2.75rem;
                     }
                 }
             `}</style>

@@ -19,7 +19,7 @@ const Solutions = () => {
                         {solutions.map((solution, index) => (
                             <motion.div 
                                 key={solution.slug}
-                                className="solution-item-card card"
+                                className="solution-item-card"
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -32,27 +32,39 @@ const Solutions = () => {
                                     <div className="solution-features-mini">
                                         {solution.features.slice(0, 3).map((feature, i) => (
                                             <div key={i} className="mini-feature">
-                                                <CheckCircle2 size={16} className="text-accent" />
+                                                <CheckCircle2 size={18} className="feature-icon" />
                                                 <span>{feature.split(':')[0]}</span>
                                             </div>
                                         ))}
                                     </div>
 
                                     <div className="solution-card-footer">
-                                        <Link to={`/solutions/${solution.slug}`} className="btn btn-primary-outline">
-                                            Learn More <ArrowRight size={18} />
-                                        </Link>
+                                        {solution.externalLink ? (
+                                            <a href={solution.externalLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                                                Learn More <ArrowRight size={18} />
+                                            </a>
+                                        ) : (
+                                            <Link to={`/solutions/${solution.slug}`} className="btn btn-primary">
+                                                Learn More <ArrowRight size={18} />
+                                            </Link>
+                                        )}
                                     </div>
                                 </div>
 
                                 {solution.subItems && (
-                                    <div className="solution-card-subitems glass">
-                                        <h4 className="subitems-title">EVAL Suite Includes:</h4>
+                                    <div className="solution-card-subitems">
+                                        <h4 className="subitems-title">Comprehensive Suite Includes:</h4>
                                         <div className="subitems-list">
                                             {solution.subItems.map(sub => (
-                                                <Link key={sub.slug} to={`/solutions/${sub.slug}`} className="sub-pill">
-                                                    {sub.title}
-                                                </Link>
+                                                sub.externalLink ? (
+                                                    <a key={sub.slug} href={sub.externalLink} target="_blank" rel="noopener noreferrer" className="sub-pill">
+                                                        {sub.title}
+                                                    </a>
+                                                ) : (
+                                                    <Link key={sub.slug} to={`/solutions/${sub.slug}`} className="sub-pill">
+                                                        {sub.title}
+                                                    </Link>
+                                                )
                                             ))}
                                         </div>
                                     </div>
@@ -72,112 +84,116 @@ const Solutions = () => {
                 .solutions-grid-large {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-                    gap: 3rem;
+                    gap: 4rem;
                 }
 
                 .solution-item-card {
                     display: flex;
                     flex-direction: column;
-                    padding: 0;
-                    border: none;
                     background: var(--white);
+                    border-radius: var(--radius-lg);
                     overflow: hidden;
                     height: 100%;
+                    box-shadow: var(--shadow-lg);
+                    border: 1px solid rgba(13, 148, 136, 0.05);
+                    transition: var(--transition-normal);
+                }
+
+                .solution-item-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: var(--shadow-xl);
+                    border-color: var(--accent);
                 }
 
                 .solution-card-body {
-                    padding: 3rem;
+                    padding: 4rem;
                     flex: 1;
                 }
 
                 .solution-card-title {
-                    font-size: 2rem;
+                    font-size: 2.25rem;
+                    font-weight: 700;
                     margin-bottom: 1.5rem;
                     color: var(--primary);
+                    font-family: var(--font-heading);
                 }
 
                 .solution-card-desc {
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                     color: var(--text-muted);
-                    margin-bottom: 2rem;
-                    line-height: 1.6;
+                    margin-bottom: 2.5rem;
+                    line-height: 1.7;
                 }
 
                 .solution-features-mini {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
-                    gap: 1rem;
-                    margin-bottom: 2.5rem;
+                    gap: 1.5rem;
+                    margin-bottom: 3rem;
                 }
 
                 .mini-feature {
                     display: flex;
                     align-items: center;
-                    gap: 0.75rem;
-                    font-size: 0.9rem;
+                    gap: 1rem;
+                    font-size: 1rem;
                     font-weight: 600;
                     color: var(--text);
                 }
 
+                .feature-icon {
+                    color: var(--accent);
+                }
+
                 .solution-card-subitems {
-                    padding: 2rem 3rem;
-                    background: rgba(99, 102, 241, 0.03);
-                    border-top: 1px solid rgba(0, 0, 0, 0.05);
+                    padding: 3rem 4rem;
+                    background: var(--background-alt);
+                    border-top: 1px solid rgba(13, 148, 136, 0.1);
                 }
 
                 .subitems-title {
-                    font-size: 0.85rem;
+                    font-size: 0.95rem;
                     font-weight: 800;
-                    color: var(--secondary);
+                    color: var(--primary);
                     text-transform: uppercase;
-                    letter-spacing: 1px;
-                    margin-bottom: 1rem;
+                    letter-spacing: 1.5px;
+                    margin-bottom: 1.5rem;
                 }
 
                 .subitems-list {
                     display: flex;
                     flex-wrap: wrap;
-                    gap: 0.75rem;
+                    gap: 1rem;
                 }
 
                 .sub-pill {
-                    padding: 0.5rem 1rem;
+                    padding: 0.6rem 1.25rem;
                     background: var(--white);
-                    border: 1px solid rgba(0, 0, 0, 0.05);
+                    border: 1px solid rgba(13, 148, 136, 0.1);
                     border-radius: var(--radius-full);
-                    font-size: 0.85rem;
+                    font-size: 0.95rem;
                     font-weight: 600;
-                    color: var(--text-muted);
-                    transition: var(--transition-fast);
-                }
-
-                .sub-pill:hover {
-                    border-color: var(--secondary);
-                    color: var(--secondary);
-                    transform: translateY(-2px);
-                }
-
-                .btn-primary-outline {
-                    border: 2px solid var(--secondary);
-                    color: var(--secondary);
-                    background: transparent;
-                    padding: 0.75rem 2rem;
-                    border-radius: var(--radius-md);
-                    font-weight: 700;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.5rem;
+                    color: var(--primary);
                     transition: var(--transition-normal);
                 }
 
-                .btn-primary-outline:hover {
-                    background: var(--secondary);
-                    color: white;
+                .sub-pill:hover {
+                    background: var(--accent);
+                    border-color: var(--accent);
+                    color: var(--primary);
+                    transform: translateY(-3px);
                 }
 
                 @media (max-width: 1024px) {
                     .solutions-grid-large {
                         grid-template-columns: 1fr;
+                        gap: 3rem;
+                    }
+                    .solution-card-body {
+                        padding: 3rem;
+                    }
+                    .solution-card-subitems {
+                        padding: 2.5rem 3rem;
                     }
                 }
 
